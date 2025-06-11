@@ -10,11 +10,13 @@ export default function IngredientsList(props) {
       </ul>
       {props.ingredients.length > 3 && (
         <div className="get-recipe-container">
-          <div>
+          <div ref={props.ref}>
             <h3>Ready for a recipe?</h3>
             <p>Generate a recipe from your list of ingredients</p>
           </div>
-          <button onClick={props.getRecipe}>Get a recipe</button>
+          <button onClick={props.getRecipe} disabled={props.loading}>
+            {props.loading ? "Loading..." : "Get a recipe"}
+          </button>
         </div>
       )}
     </section>

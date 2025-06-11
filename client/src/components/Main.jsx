@@ -1,16 +1,26 @@
 import React from "react";
-import ClaudeRecipe from "./components/ClaudeRecipe";
-import IngredientsList from "./components/IngredientsList";
-import { getRecipeFromMistral } from "./ai";
+import ClaudeRecipe from "./ClaudeRecipe";
+import IngredientsList from "./IngredientsList";
+import { getRecipeFromMistral } from "../ai";
 
 export default function Main() {
   const [ingredients, setIngredients] = React.useState([]);
 
   const [recipe, setRecipe] = React.useState("");
+  const recipeSection = React.useRef(null);
+  const [loading, setLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    if (recipe !== "" && recipeSection.current !== null) {
+      recipeSection.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [recipe]);
 
   async function getRecipe() {
+    setLoading(true);
     const recipeMarkdown = await getRecipeFromMistral(ingredients);
     setRecipe(recipeMarkdown);
+    setLoading(false);
   }
 
   function addIngredient(formData) {
@@ -30,8 +40,14 @@ export default function Main() {
         <button>Add ingredient</button>
       </form>
       {ingredients.length > 0 && (
-        <IngredientsList ingredients={ingredients} getRecipe={getRecipe} />
+        <IngredientsList
+          ref={recipeSection}
+          ingredients={ingredients}
+          getRecipe={getRecipe}
+          loading={loading}
+        />
       )}
+      {loading && <div className="spinner"></div>}
       {recipe && <ClaudeRecipe recipe={recipe} />}
     </main>
   );
