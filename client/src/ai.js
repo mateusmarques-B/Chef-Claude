@@ -1,6 +1,5 @@
-
 export async function getRecipeFromMistral(ingredients) {
-  const res = await fetch("http://localhost:3001/api/recipe", {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/recipe`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ingredients }),
