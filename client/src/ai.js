@@ -1,5 +1,3 @@
-import { InferenceClient } from "@huggingface/inference";
-import { jsxs } from "react/jsx-runtime";
 
 export async function getRecipeFromMistral(ingredients) {
   const res = await fetch("http://localhost:3001/api/recipe", {
