@@ -3,6 +3,8 @@ import ClaudeRecipe from "./ClaudeRecipe";
 import Spinner from "./Spinner";
 import IngredientsList from "./IngredientsList";
 import { getRecipeFromMistral } from "../ai";
+import jsPDF from "jspdf";
+
 
 export default function Main() {
   const [ingredients, setIngredients] = React.useState([]);
@@ -27,6 +29,12 @@ export default function Main() {
   function addIngredient(formData) {
     const newIngredient = formData.get("ingredient");
     setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
+  }
+
+  function exportRecipe(recipeText) {
+    const doc = new jsPDF();
+    doc.text(recipeText, 10, 10);
+    doc.save("recipe.pdf");
   }
 
   return (
@@ -68,6 +76,7 @@ export default function Main() {
           <ClaudeRecipe recipe={recipe} />
         </div>
       )}
+      
     </main>
   );
 }

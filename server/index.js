@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 app.post("/api/recipe", async (req, res) => {
   const { ingredients } = req.body;
@@ -20,7 +20,7 @@ app.post("/api/recipe", async (req, res) => {
 
   try {
     const response = await axios.post(
-      "https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.3",
+      "https://router.huggingface.co/hf-inference/models/mistralai/Mistral-7B-Instruct-v0.3",
       {
         inputs: `Make a recipe with: ${ingredients.join(", ")}`,
         parameters: {
@@ -40,11 +40,14 @@ app.post("/api/recipe", async (req, res) => {
 
     res.json({ recipe });
   } catch (error) {
-    console.error("Error when searching for recipe:", error);
+    console.error(
+      "Error when searching for recipe:",
+      error?.response?.data || error.message
+    );
     res.status(500).json({ error: "Error when searching for recipe" });
   }
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Server runnig in: ${PORT}`);
 });
