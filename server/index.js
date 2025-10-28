@@ -64,7 +64,7 @@ app.post("/api/recipe", async (req, res) => {
   } catch (error) {
     console.error(
       "Error when searching for recipe:",
-      error?.response?.data || error.message
+      error.response?.status, error?.response?.data || error.message
     );
     res.status(500).json({ error: "Error when searching for recipe" });
   }
