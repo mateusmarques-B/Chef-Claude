@@ -41,8 +41,16 @@ app.post("/api/recipe", async (req, res) => {
 
     const response = await axios.post(
       "https://api-inference.huggingface.co/models/HuggingFaceH4/zephyr-7b-beta",
-      { inputs: `Create a recipe with: ${ingredients.join(", ")}` },
-      { headers: { Authorization: `Bearer ${process.env.HF_ACCESS_TOKEN}` } }
+      {
+        inputs: `Make a recipe with: ${ingredients.join(", ")}`,
+        parameters: { max_new_tokens: 512 },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.HF_ACCESS_TOKEN}`,
+        },
+        timeout: 100000,
+      }
     );
     console.log(response.data);
 
