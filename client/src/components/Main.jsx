@@ -34,10 +34,10 @@ export default function Main() {
         <input
           type="text"
           placeholder="ex: oregano"
-          aria-label="Add ingrediente"
+          aria-label="Add ingredient"
           name="ingredient"
         />
-        <button>Add ingredient</button>
+        <button>Adicionar ingrediente</button>
       </form>
       {ingredients.length > 0 && (
         <IngredientsList
