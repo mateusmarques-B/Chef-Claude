@@ -1,4 +1,4 @@
-export async function getRecipeFromMistral(ingredients) {
+export async function getRecipeFromGemini(ingredients) {
   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/recipe`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },

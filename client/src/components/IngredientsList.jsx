@@ -4,18 +4,18 @@ export default function IngredientsList(props) {
   ));
   return (
     <section>
-      <h2>Ingredients on hand:</h2>
+      <h2>Ingredientes nas mãos:</h2>
       <ul className="ingredients-list" aria-live="polite">
         {ingredientsListItems}
       </ul>
       {props.ingredients.length > 3 && (
         <div className="get-recipe-container">
           <div ref={props.ref}>
-            <h3>Ready for a recipe?</h3>
-            <p>Generate a recipe from your list of ingredients</p>
+            <h3>Pronto para uma receita?</h3>
+            <p>Gere uma receita da sua lista de ingredientes</p>
           </div>
           <button onClick={props.getRecipe} disabled={props.loading}>
-            {props.loading ? "Loading..." : "Get a recipe"}
+            {props.loading ? "Carregando..." : "Pegue a receita"}
           </button>
         </div>
       )}

@@ -1,7 +1,7 @@
 import React from "react";
 import ClaudeRecipe from "./ClaudeRecipe";
 import IngredientsList from "./IngredientsList";
-import { getRecipeFromMistral } from "../ai";
+import { getRecipeFromGemini } from "../ai";
 
 export default function Main() {
   const [ingredients, setIngredients] = React.useState([]);
@@ -18,7 +18,7 @@ export default function Main() {
 
   async function getRecipe() {
     setLoading(true);
-    const recipeMarkdown = await getRecipeFromMistral(ingredients);
+    const recipeMarkdown = await getRecipeFromGemini(ingredients);
     setRecipe(recipeMarkdown);
     setLoading(false);
   }
@@ -33,8 +33,8 @@ export default function Main() {
       <form action={addIngredient} className="add-ingredient-form">
         <input
           type="text"
-          placeholder="e.g. oregano"
-          aria-label="Add ingredient"
+          placeholder="ex: oregano"
+          aria-label="Add ingrediente"
           name="ingredient"
         />
         <button>Add ingredient</button>
