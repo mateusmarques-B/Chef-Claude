@@ -44,9 +44,13 @@ const app = express();
 app.use(cors(corsOptions));
 app.use(express.json());
 
+<<<<<<< HEAD
 app.get("/", (req, res) => {
   res.send("Chef Claude API online 🍳");
 });
+=======
+const PORT = process.env.PORT || 3001;
+>>>>>>> feature/tailwindcss
 
 const PORT = process.env.PORT || 3001;
 
@@ -108,10 +112,29 @@ app.post("/api/recipe", async (req, res) => {
   };
 
   try {
+<<<<<<< HEAD
     // 4. Chamada à API do Gemini
     const geminiResponse = await axios.post(API_URL, payload, {
       timeout: 120000,
     });
+=======
+    const response = await axios.post(
+      "https://router.huggingface.co/hf-inference/models/mistralai/Mistral-7B-Instruct-v0.3",
+      {
+        inputs: `Make a recipe with: ${ingredients.join(", ")}`,
+        parameters: {
+          max_new_tokens: 1024,
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.HF_ACCESS_TOKEN}`,
+        },
+        timeout: 100000,
+      }
+    );
+    console.log(response.data);
+>>>>>>> feature/tailwindcss
 
     // Extração e Parse do JSON (Gemini retorna JSON como uma string no campo 'text')
     const candidate = geminiResponse.data.candidates?.[0];
@@ -128,6 +151,7 @@ app.post("/api/recipe", async (req, res) => {
     // Resposta de Sucesso
     res.json({ recipe: recipeObject });
   } catch (error) {
+<<<<<<< HEAD
     // Tratamento de Erro do Axios/Gemini
     const status = error.response?.status || error.status || 500;
     const errorDetails = error.response?.data?.error || {
@@ -142,9 +166,20 @@ app.post("/api/recipe", async (req, res) => {
       details: errorDetails,
       status_code: status,
     });
+=======
+    console.error(
+      "Error when searching for recipe:",
+      error?.response?.data || error.message
+    );
+    res.status(500).json({ error: "Error when searching for recipe" });
+>>>>>>> feature/tailwindcss
   }
 });
 
 app.listen(PORT, () => {
+<<<<<<< HEAD
   console.log(`🚀 Chef Claude API online 🍳 (port ${PORT})`);
+=======
+  console.log(`Server runnig in: ${PORT}`);
+>>>>>>> feature/tailwindcss
 });
