@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  @apply font-sans bg-[#fafaf8];
+  @apply font-[Inter] bg-[#fafaf8] m-0;
 }
 
 main {
@@ -17,6 +21,7 @@ main {
   gap: 10px;
 }
 
+/*ClaudeRecipe*/
 .suggested-recipe-container {
   color: #475467;
   line-height: 28px;

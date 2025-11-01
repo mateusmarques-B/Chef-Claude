@@ -30,12 +30,12 @@ export default function Main() {
   }
 
   return (
-    <main className="max-w-2xl mx-auto p-4">
+    <main className="max-w-2xl mx-auto pt-[30px] pr-[30px] pb-[10px] pl-[30px]">
       <h1 className="text-3xl font-bold text-center mb-6 text-green-700"></h1>
 
       <form
         action={addIngredient}
-        className="flex justify-center gap-3 h-[38px]"
+        className="flex justify-center gap-3 h-[38px] mb-4"
       >
         <input
           type="text"
@@ -44,7 +44,12 @@ export default function Main() {
           name="ingredient"
           className="rounded-md border border-gray-300 px-[13px] py-[9px] shadow-sm flex-grow min-w-[150px] max-w-[400px]"
         />
-        <button>Add ingrediente</button>
+        <button
+          className="border-none rounded-md bg-[#141413] text-[#fafaf8] font-[Inter] w-40 text-sm font-medium 
+            before:content-['+'] before:mr-1.5"
+        >
+          Add ingrediente
+        </button>
       </form>
 
       {ingredients.length > 0 && (
@@ -62,7 +67,6 @@ export default function Main() {
           <ClaudeRecipe recipe={recipe} />
         </div>
       )}
-      
     </main>
   );
 }
