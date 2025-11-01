@@ -130,8 +130,7 @@ export default function ClaudeRecipe({ recipe }) {
       <button
         id="export-pdf-button"
         onClick={handleExportPDF}
-        className="w-full md:w-auto px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg 
-          shadow-md hover:bg-indigo-700 transition duration-300 disabled:opacity-50"
+        className="border-none rounded-md bg-[#d17557] shadow-sm text-[#fafaf8] px-[17px] py-[9px] font-[Inter] text-xs cursor-pointer"
       >
         Exportar para PDF
       </button>

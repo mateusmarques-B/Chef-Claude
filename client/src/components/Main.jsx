@@ -29,12 +29,6 @@ export default function Main() {
     setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
   }
 
-  function exportRecipe(recipeText) {
-    const doc = new jsPDF();
-    doc.text(recipeText, 10, 10);
-    doc.save("recipe.pdf");
-  }
-
   return (
     <main className="max-w-2xl mx-auto p-4">
       <h1 className="text-3xl font-bold text-center mb-6 text-green-700"></h1>
